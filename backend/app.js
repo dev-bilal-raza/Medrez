@@ -25,7 +25,7 @@ const server = http.createServer(app);
 const io = socketIo(server);
 
 mongoose
-  .connect("mongodb://localhost:27017/Medrez")
+  .connect(process.env.MONGO_URI)
   .then(() => console.log("MongoDB connected"))
   .catch((err) => console.log(err));
 
