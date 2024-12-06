@@ -1,0 +1,26 @@
+# Node
+node_modules/
+npm-debug.log
+yarn-error.log
+
+# Environment
+.env
+.env.*
+
+# Frontend
+frontend/build/
+frontend/coverage/
+frontend/dist/
+frontend/node_modules/
+
+# Backend
+Backend/node_modules/
+Backend/dist/
+Backend/tmp/
+Backend/out-tsc/
+Backend/bazel-out/
+
+# Misc
+.DS_Store
+*.swp
+*.swo
