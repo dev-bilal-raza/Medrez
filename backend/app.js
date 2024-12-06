@@ -7,15 +7,13 @@ const jwt = require("jsonwebtoken");
 const residentsRouter = require("./Routes/residents");
 const rotationRoutes = require("./Routes/rotations");
 const scheduleRoutes = require("./Routes/ScheduleRoutes");
-const publishingSettingsRoutes = require('./Routes/publishingSettings');
+const publishingSettingsRoutes = require("./Routes/publishingSettings");
 const shiftRoutes = require("./Routes/shiftRoutes");
-const NotificationManager = require('./services/NotificationManager');
+const NotificationManager = require("./services/NotificationManager");
 const http = require("http");
 const socketIo = require("socket.io");
 
 dotenv.config();
-
-
 
 const app = express();
 app.use(express.json());
@@ -53,9 +51,13 @@ const userSchema = new mongoose.Schema({
 
 const User = mongoose.model("User", userSchema);
 
+app.get("/", (req, res) => {
+  return "Welcome to the Home Page";
+});
+
 app.post("/api/signup", async (req, res) => {
   const { username, email, password, role } = req.body;
-  console.log(username)
+  console.log(username);
   try {
     const existingUser = await User.findOne({ email });
     if (existingUser) {
@@ -69,7 +71,7 @@ app.post("/api/signup", async (req, res) => {
       username,
       email,
       password: hashedPassword,
-      role: role || "user", 
+      role: role || "user",
     });
     await newUser.save();
 
@@ -77,7 +79,7 @@ app.post("/api/signup", async (req, res) => {
       expiresIn: "1h",
     });
 
-    res.status(201).json({ token, user: newUser }); 
+    res.status(201).json({ token, user: newUser });
   } catch (error) {
     console.error("Error during signup:", error);
     res.status(500).json({ message: "Server error" });
@@ -102,14 +104,14 @@ app.post("/api/login", async (req, res) => {
       expiresIn: "1h",
     });
 
-    console.log(`User Role: ${user.role}`); 
+    console.log(`User Role: ${user.role}`);
     res.status(200).json({
       token,
       user: {
         id: user._id,
         username: user.username,
         email: user.email,
-        role: user.role, 
+        role: user.role,
       },
     });
   } catch (error) {
@@ -118,29 +120,29 @@ app.post("/api/login", async (req, res) => {
   }
 });
 
-app.post('/api/notifications', (req, res) => {
-  const { message } = req.body; 
+app.post("/api/notifications", (req, res) => {
+  const { message } = req.body;
   const notification = NotificationManager.addNotification(message);
-  io.emit('notifications', NotificationManager.getAllNotifications()); 
-  res.status(201).json(notification); 
+  io.emit("notifications", NotificationManager.getAllNotifications());
+  res.status(201).json(notification);
 });
 
-app.get('/api/notifications', (req, res) => {
+app.get("/api/notifications", (req, res) => {
   res.json(NotificationManager.getAllNotifications());
 });
 
-io.on('connection', (socket) => {
-  console.log('New client connected');
+io.on("connection", (socket) => {
+  console.log("New client connected");
 
-  socket.emit('notifications', NotificationManager.getAllNotifications());
+  socket.emit("notifications", NotificationManager.getAllNotifications());
 
-  socket.on('markAsRead', (id) => {
-    NotificationManager.markAsRead(id); 
-    io.emit('notifications', NotificationManager.getAllNotifications()); 
+  socket.on("markAsRead", (id) => {
+    NotificationManager.markAsRead(id);
+    io.emit("notifications", NotificationManager.getAllNotifications());
   });
 
-  socket.on('disconnect', () => {
-    console.log('Client disconnected');
+  socket.on("disconnect", () => {
+    console.log("Client disconnected");
   });
 });
 
