@@ -6,6 +6,11 @@ const { authMiddleware } = require('../middleware/middleware');
 const router = express.Router();
 
 
+
+app.get("/", (req, res) => {
+  return "Welcome to the Home Page"
+})
+
 // Login endpoint
 router.post('/login', async (req, res) => {
   const { email, password } = req.body;
