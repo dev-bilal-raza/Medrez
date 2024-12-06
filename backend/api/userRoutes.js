@@ -7,7 +7,7 @@ const router = express.Router();
 
 
 
-app.get("/", (req, res) => {
+router.get("/", (req, res) => {
   return "Welcome to the Home Page"
 })
 
