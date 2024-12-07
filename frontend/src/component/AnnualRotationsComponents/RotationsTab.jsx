@@ -21,7 +21,7 @@ const RotationsTab = () => {
   useEffect(() => {
     const fetchRotations = async () => {
       try {
-        const response = await axios.get("https://medrezserver-lake.vercel.app:5000/api/rotations");
+        const response = await axios.get("https://medrezserver-lake.vercel.app/api/rotations");
         setRotationList(response.data);
       } catch (error) {
         console.error("Error fetching rotations:", error);
@@ -33,7 +33,7 @@ const RotationsTab = () => {
   const handleDeleteRotation = async (id) => {
     try {
       const response = await axios.delete(
-        `https://medrezserver-lake.vercel.app:5000/api/rotations/${id}`
+        `https://medrezserver-lake.vercel.app/api/rotations/${id}`
       );
 
       if (response.status === 200) {
@@ -67,7 +67,7 @@ const RotationsTab = () => {
     const rotation = suggestedRotations[index];
 
     try {
-      const response = await axios.post("https://medrezserver-lake.vercel.app:5000/api/rotations", {
+      const response = await axios.post("https://medrezserver-lake.vercel.app/api/rotations", {
         name: rotation.name,
         color: rotation.color,
         staffingRequirements: rotation.staffingRequirements,
@@ -87,7 +87,7 @@ const RotationsTab = () => {
     const deletedRotation = rotationList[index];
 
     try {
-      await axios.delete(`https://medrezserver-lake.vercel.app:5000/api/rotations/${deletedRotation._id}`);
+      await axios.delete(`https://medrezserver-lake.vercel.app/api/rotations/${deletedRotation._id}`);
 
       setDeletedRotations([...deletedRotations, deletedRotation]);
       setRotationList(rotationList.filter((_, i) => i !== index));

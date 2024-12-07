@@ -19,7 +19,7 @@ function SelectResidentForm({ onSelect, onClose }) {
 
   useEffect(() => {
     const fetchResidents = async () => {
-      const response = await axios.get("https://medrezserver-lake.vercel.app:5000/api/residents");
+      const response = await axios.get("https://medrezserver-lake.vercel.app/api/residents");
       setResidents(response.data);
       console.log(residents);
     };

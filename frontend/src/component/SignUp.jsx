@@ -24,7 +24,7 @@ function SignUp() {
     e.preventDefault();
     try {
       const response = await axios.post(
-        "https://medrezserver-lake.vercel.app:5000/api/signup",
+        "https://medrezserver-lake.vercel.app/api/signup",
         formData,
         {
           headers: {

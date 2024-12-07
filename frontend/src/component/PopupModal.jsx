@@ -42,7 +42,7 @@ function PopupModal({ FormName }) {
 
     try {
       const response = await axios.post(
-        "https://medrezserver-lake.vercel.app:5000/api/schedules",
+        "https://medrezserver-lake.vercel.app/api/schedules",
         payload
       );
 

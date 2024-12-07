@@ -17,7 +17,7 @@ const RotationForm = ({ selectedRotationId, onSave }) => {
       const fetchRotationData = async () => {
         try {
           const response = await axios.get(
-            `https://medrezserver-lake.vercel.app:5000/api/rotations/${selectedRotationId}`
+            `https://medrezserver-lake.vercel.app/api/rotations/${selectedRotationId}`
           );
           const data = response.data;
 
@@ -86,13 +86,13 @@ const RotationForm = ({ selectedRotationId, onSave }) => {
       if (selectedRotationId) {
         // Update existing rotation
         await axios.put(
-          `https://medrezserver-lake.vercel.app:5000/api/rotations/${selectedRotationId}`,
+          `https://medrezserver-lake.vercel.app/api/rotations/${selectedRotationId}`,
           updatedRotation
         );
       } else {
         // Create new rotation
         await axios.post(
-          "https://medrezserver-lake.vercel.app:5000/api/rotations",
+          "https://medrezserver-lake.vercel.app/api/rotations",
           updatedRotation
         );
       }
