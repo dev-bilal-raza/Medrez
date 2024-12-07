@@ -14,7 +14,7 @@ function UserSettingsPage() {
 
     const handleSave = async () => {
         try {
-            const response = await axios.post('http://localhost:5000/api/publishing-settings', {
+            const response = await axios.post('https://medrezserver-lake.vercel.app:5000/api/publishing-settings', {
                 institutionName,
                 departmentName,
                 isSearchable,

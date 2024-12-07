@@ -31,12 +31,12 @@ function AnnualRotate() {
     }
 
     try {
-      await axios.put(`http://localhost:5000/api/rotations/${editableYear}/${editableName}`, {
+      await axios.put(`https://medrezserver-lake.vercel.app:5000/api/rotations/${editableYear}/${editableName}`, {
         name: editableName,
         year: editableYear,
       });
 
-      navigate(`http://localhost:5000/api/rotations/${editableYear}/${editableName}`);
+      navigate(`https://medrezserver-lake.vercel.app:5000/api/rotations/${editableYear}/${editableName}`);
       setIsEditing(false);
     } catch (error) {
       console.error("Error saving data:", error);
