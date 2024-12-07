@@ -21,7 +21,7 @@ function Residents() {
 
   useEffect(() => {
     const fetchResidents = async () => {
-      const response = await axios.get("https://medrezserver-lake.vercel.app:5000/api/residents");
+      const response = await axios.get("https://medrezserver-lake.vercel.app/api/residents");
       setTableData(response.data);
     };
     fetchResidents();
@@ -51,7 +51,7 @@ function Residents() {
     e.preventDefault();
     if (isEditing !== null) {
       await axios.put(
-        `https://medrezserver-lake.vercel.app:5000/api/residents/${tableData[isEditing]._id}`,
+        `https://medrezserver-lake.vercel.app/api/residents/${tableData[isEditing]._id}`,
         formData
       );
       const updatedData = [...tableData];
@@ -64,7 +64,7 @@ function Residents() {
         password: generatePassword(),
       };
       const response = await axios.post(
-        "https://medrezserver-lake.vercel.app:5000/api/residents",
+        "https://medrezserver-lake.vercel.app/api/residents",
         newResidentData
       );
       setTableData([...tableData, response.data]);
@@ -111,7 +111,7 @@ function Residents() {
     const itemToDelete = tableData[index];
     setDeletedItems([...deletedItems, itemToDelete]);
     await axios.delete(
-      `https://medrezserver-lake.vercel.app:5000/api/residents/${itemToDelete._id}`
+      `https://medrezserver-lake.vercel.app/api/residents/${itemToDelete._id}`
     );
     const updatedData = tableData.filter((_, i) => i !== index);
     setTableData(updatedData);
@@ -120,7 +120,7 @@ function Residents() {
   const handleRestore = async (index) => {
     const itemToRestore = deletedItems[index];
     await axios.put(
-      `https://medrezserver-lake.vercel.app:5000/api/residents/restore/${itemToRestore._id}`
+      `https://medrezserver-lake.vercel.app/api/residents/restore/${itemToRestore._id}`
     );
     setTableData([...tableData, itemToRestore]);
     const updatedDeletedItems = deletedItems.filter((_, i) => i !== index);
@@ -130,7 +130,7 @@ function Residents() {
   const handlePermanentDelete = async (index) => {
     const itemToDelete = deletedItems[index];
     await axios.delete(
-      `https://medrezserver-lake.vercel.app:5000/api/residents/permanent/${itemToDelete._id}`
+      `https://medrezserver-lake.vercel.app/api/residents/permanent/${itemToDelete._id}`
     );
     const updatedDeletedItems = deletedItems.filter((_, i) => i !== index);
     setDeletedItems(updatedDeletedItems);

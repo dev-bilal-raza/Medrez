@@ -22,7 +22,7 @@ function Login() {
     e.preventDefault();
     try {
       const response = await axios.post(
-        "https://medrezserver-lake.vercel.app:5000/api/login",
+        "https://medrezserver-lake.vercel.app/api/login",
         formData,
         {
           headers: {

@@ -9,13 +9,13 @@ const CallShiftSchedule = () => {
 
   useEffect(() => {
     // Fetch blocks data on component mount
-    axios.get('https://medrezserver-lake.vercel.app:5000/api/blocks')
+    axios.get('https://medrezserver-lake.vercel.app/api/blocks')
       .then(response => setBlockData(response.data))
       .catch(error => console.error('Error fetching blocks:', error));
   }, []);
 
   const handleAddBlock = () => {
-    axios.post('https://medrezserver-lake.vercel.app:5000/api/blocks', newBlock)
+    axios.post('https://medrezserver-lake.vercel.app/api/blocks', newBlock)
       .then(response => setBlockData([...blockData, response.data]))
       .catch(error => console.error('Error adding block:', error));
   };
@@ -26,7 +26,7 @@ const CallShiftSchedule = () => {
 
   const handleSave = (id) => {
     const block = blockData.find(b => b.id === id);
-    axios.put(`https://medrezserver-lake.vercel.app:5000/api/blocks/${id}`, block)
+    axios.put(`https://medrezserver-lake.vercel.app/api/blocks/${id}`, block)
       .then(response => {
         setBlockData(blockData.map(b => (b.id === id ? response.data : b)));
         setEditingBlockId(null);
@@ -35,7 +35,7 @@ const CallShiftSchedule = () => {
   };
 
   const handleRemove = (id) => {
-    axios.delete(`https://medrezserver-lake.vercel.app:5000/api/blocks/${id}`)
+    axios.delete(`https://medrezserver-lake.vercel.app/api/blocks/${id}`)
       .then(() => setBlockData(blockData.filter(b => b.id !== id)))
       .catch(error => console.error('Error deleting block:', error));
   };
