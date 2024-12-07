@@ -22,7 +22,7 @@ import AnnualRotation from "./component/AnnualRotation";
 
 function App() {
   const [hasData, setHasData] = useState(false);
-  const BASE_URL = "http://localhost:5000/api"; 
+  const BASE_URL = "https://medrezserver-lake.vercel.app/api"; 
 
   useEffect(() => {
     const fetchData = async () => {

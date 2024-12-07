@@ -8,7 +8,7 @@ import CloseIcon from "@mui/icons-material/Close";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import io from 'socket.io-client'; // Import Socket.IO client
 
-const socket = io('http://localhost:5000'); // Connect to the server
+const socket = io('https://medrezserver-lake.vercel.app:5000'); // Connect to the server
 
 function Dashboard() {
   const navigate = useNavigate();
@@ -40,7 +40,7 @@ function Dashboard() {
     };
 
     try {
-      const response = await fetch('http://localhost:5000/api/rotations', {
+      const response = await fetch('https://medrezserver-lake.vercel.app:5000/api/rotations', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -60,7 +60,7 @@ function Dashboard() {
 
   const fetchAnnualRotationData = async () => {
     try {
-      const response = await fetch('http://localhost:5000/api/schedules');
+      const response = await fetch('https://medrezserver-lake.vercel.app:5000/api/schedules');
 
       if (!response.ok) {
         const text = await response.text();
@@ -82,7 +82,7 @@ function Dashboard() {
 
   const fetchShiftScheduleData = async () => {
     try {
-      const response = await fetch('http://localhost:5000/api/shift-schedules');
+      const response = await fetch('https://medrezserver-lake.vercel.app:5000/api/shift-schedules');
       const data = await response.json();
       setShiftScheduleData(data);
     } catch (error) {
@@ -109,7 +109,7 @@ function Dashboard() {
 
   useEffect(() => {
     const fetchNotifications = async () => {
-      const response = await fetch('http://localhost:5000/api/notifications');
+      const response = await fetch('https://medrezserver-lake.vercel.app:5000/api/notifications');
       const data = await response.json();
       setNotifications(data);
     };
@@ -147,7 +147,7 @@ function Dashboard() {
   const handleDeleteSchedule = async (id) => {
     if (window.confirm("Are you sure you want to delete this schedule?")) {
       try {
-        const response = await fetch(`http://localhost:5000/api/rotations/${id}`, {
+        const response = await fetch(`https://medrezserver-lake.vercel.app:5000/api/rotations/${id}`, {
           method: 'DELETE',
         });
 
@@ -185,7 +185,7 @@ function Dashboard() {
 
   const openTrash = async () => {
     try {
-      const response = await fetch('http://localhost:5000/api/trashed-schedules'); // Fetch trashed schedules from the server
+      const response = await fetch('https://medrezserver-lake.vercel.app:5000/api/trashed-schedules'); // Fetch trashed schedules from the server
       const data = await response.json();
       setTrashedSchedules(data);
       setShowTrash(true);

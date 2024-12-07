@@ -172,7 +172,7 @@ const SchedulePickingTable = () => {
   useEffect(() => {
     const fetchRotations = async () => {
       try {
-        const response = await fetch('http://localhost:5000/api/rotations');
+        const response = await fetch('https://medrezserver-lake.vercel.app:5000/api/rotations');
         const data = await response.json();
         setRotations(data); 
       } catch (error) {

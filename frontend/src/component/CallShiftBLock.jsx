@@ -11,7 +11,7 @@ function CallShiftBlock() {
   useEffect(() => {
     const fetchShifts = async () => {
       try {
-        const response = await axios.get("http://localhost:5000/api/shifts");
+        const response = await axios.get("https://medrezserver-lake.vercel.app:5000/api/shifts");
         setShiftRows(Array.isArray(response.data) ? response.data : []);
       } catch (error) {
         console.error("Error fetching shifts:", error);
@@ -31,7 +31,7 @@ function CallShiftBlock() {
 
   const handleAddShiftRow = async (newShift) => {
     try {
-      const response = await axios.post("http://localhost:5000/api/shifts", newShift);
+      const response = await axios.post("https://medrezserver-lake.vercel.app:5000/api/shifts", newShift);
       setShiftRows((prevRows) => [...prevRows, response.data]);
       setIsModalOpen(false);
     } catch (error) {
@@ -42,7 +42,7 @@ function CallShiftBlock() {
 
   const handleDeleteShift = async (shiftId) => {
     try {
-      await axios.delete(`http://localhost:5000/api/shifts/${shiftId}`);
+      await axios.delete(`https://medrezserver-lake.vercel.app:5000/api/shifts/${shiftId}`);
       setShiftRows((prevRows) => prevRows.filter((shift) => shift._id !== shiftId));
     } catch (error) {
       console.error("Error deleting shift:", error.response.data);
